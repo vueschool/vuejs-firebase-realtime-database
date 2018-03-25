@@ -1,0 +1,20 @@
+{
+    "messages" : {
+        "-L8HkVXx_jUWUXDIVDlR" : {
+          "text" : "Hey",
+          "nickname": "guybrush"
+        },
+        "-L8HkXz1C1Xyr9r9WLdE" : {
+          "text" : "Hi, what's your name?",
+          "nickname": "pirate1861"
+        },
+        "-L8HkY9UXtLTRoGfnZr8" : {
+          "text" : "My name is Guybrush Threepwood",
+          "nickname": "guybrush"
+        },
+        "-L8HkYMfiiEE0sQvBhJl" : {
+          "text" : "Guybrush Threepwood? That's the most ridiculous name I’ve ever heard!",
+          "nickname": "pirate1861"
+        }
+    }
+}
