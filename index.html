@@ -16,6 +16,8 @@
       <h6 class="card-subtitle mb-2 text-muted">{{ message.nickname }}</h6>
       <!-- content -->
       <p class="card-text">{{ message.text }}</p>
+      <!-- actions -->
+      <a @click.prevent="deleteMessage(message)" href="#" class="card-link">delete</a>
     </div>
   </div>
 
@@ -49,7 +51,6 @@
   const database = firebase.database()
   const messagesRef = database.ref('messages')
 
-
   new Vue({
     el: "#chat",
 
@@ -63,11 +64,20 @@
       storeMessage () {
         messagesRef.push({text: this.messageText, nickname: this.nickname})
         this.messageText = ''
+      },
+      deleteMessage (message) {
+        messagesRef.child(message.id).remove()
       }
     },
 
     created () {
-      messagesRef.on('child_added', snapshot => this.messages.push(snapshot.val()))
+      // value = snapshot.val() | key = snapshot.key
+      messagesRef.on('child_added', snapshot => this.messages.push({...snapshot.val(), id: snapshot.key}))
+      messagesRef.on('child_removed', snapshot => {
+        const deletedMessage = this.messages.find(message => message.id === snapshot.key)
+        const index = this.messages.indexOf(deletedMessage)
+        this.messages.splice(index, 1)
+      })
     }
   })
 </script>
